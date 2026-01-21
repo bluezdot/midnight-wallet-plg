@@ -1,6 +1,6 @@
 {
-  "name": "Copy of Midnight Wallet DevKit",
-  "description": "A developer tool for the Midnight Network to test token balances, shielded transfers, and script execution simulation.",
+  "name": "Midnight Wallet DevKit v1.0",
+  "description": "Professional developer suite for Midnight Network featuring pnpm workflow, ZK-simulation, and AI-powered dev assistance.",
   "requestFramePermissions": [
     "camera"
   ]

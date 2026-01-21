@@ -32,7 +32,7 @@ const App: React.FC = () => {
     try {
       const state = await midnightService.connectWallet();
       setWallet(state);
-      addLog(`Environment ready. Devnet active.`, 'success');
+      addLog(`Environment ready. pnpm node_modules verified.`, 'success');
     } catch (err) {
       addLog('Failed to connect environment', 'error');
     } finally {
@@ -68,7 +68,7 @@ const App: React.FC = () => {
       setAmount('');
       setRecipient('');
     } catch (err) {
-      addLog('Execution error in worker', 'error');
+      addLog('Execution error in worker process', 'error');
     } finally {
       setLoading(false);
       setCurrentStage(null);
@@ -77,7 +77,7 @@ const App: React.FC = () => {
 
   const runScript = async (scriptId: string) => {
     if (!wallet) {
-      addLog('Run "pnpm connect" first', 'warn');
+      addLog('Action required: Initialize workspace with pnpm first', 'warn');
       return;
     }
     setLoading(true);
@@ -92,7 +92,7 @@ const App: React.FC = () => {
     } else {
       addLog('[Stdout] Compiling Compact logic...', 'info');
       await new Promise(r => setTimeout(r, 1500));
-      addLog('[Stdout] Script exit code: 0', 'success');
+      addLog('[Stdout] pnpm script exit code: 0', 'success');
     }
     setLoading(false);
   };
@@ -208,7 +208,7 @@ const App: React.FC = () => {
                   : 'bg-white hover:bg-gray-100 text-black'
                 } disabled:opacity-20 disabled:cursor-not-allowed`}
               >
-                {loading ? 'Executing with pnpm...' : `Finalize ${isShielded ? 'Shielded' : 'Public'} Tx`}
+                {loading ? 'Executing pnpm command...' : `Finalize ${isShielded ? 'Shielded' : 'Public'} Tx`}
               </button>
             </form>
           </div>

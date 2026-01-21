@@ -1,20 +1,45 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
 
-# Run and deploy your AI Studio app
+# 🌙 Midnight Wallet DevKit (pnpm Edition)
 
-This contains everything you need to run your app locally.
+Bộ công cụ phát triển dành cho kỹ sư xây dựng ví và ứng dụng trên mạng lưới **Midnight Network**. Tập trung vào việc thử nghiệm token balances, shielded transfers và mô phỏng hợp đồng thông minh Compact.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1bH1o4QJYLBCecQZthwpha64orjDYWM0C
+## 🚀 Tính năng chính
+- **Shielded Transactions**: Thử nghiệm quy trình tạo ZK-Proof cho các giao dịch bảo mật.
+- **pnpm Workflow**: Tối ưu hóa hiệu suất cài đặt và quản lý dependencies.
+- **Script Lab**: Chạy các script kiểm thử ví trực tiếp từ giao diện hoặc terminal.
+- **AI Assistant**: Tích hợp Gemini 3 Pro để giải đáp các thắc mắc về kỹ thuật Midnight.
 
-## Run Locally
+## 🛠 Yêu cầu hệ thống
+- [pnpm](https://pnpm.io/installation) v8.0.0 trở lên.
+- Node.js v18+.
 
-**Prerequisites:**  Node.js
+## 📦 Cài đặt
+Sử dụng pnpm để cài đặt dependencies nhanh và tiết kiệm dung lượng:
+```bash
+pnpm install
+```
 
+## 💻 Các lệnh thực thi
+| Lệnh | Mô tả |
+| :--- | :--- |
+| `pnpm dev` | Khởi động môi trường phát triển UI |
+| `pnpm test` | Chạy script kiểm thử ví (`test-script.ts`) |
+| `pnpm build` | Đóng gói ứng dụng cho production |
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🧪 Chạy Script Test (ts-node)
+Để chạy script lấy balance hoặc test transfer trực tiếp từ Terminal, hãy sử dụng:
+```bash
+pnpm dlx ts-node test-script.ts
+```
+
+## 📂 Cấu trúc dự án
+- `services/`: Chứa logic cốt lõi tương tác với Midnight SDK (mock).
+- `components/`: Các thành phần UI (Console, AI Assistant, Script Lab).
+- `types.ts`: Định nghĩa các interface cho Wallet, Tx và Log.
+- `test-script.ts`: File mẫu để viết code test ví.
+
+## 🛡 Bảo mật
+Project này hiện đang ở chế độ **Simulated Lab**. Các địa chỉ và khóa riêng tư được tạo ra chỉ phục vụ mục đích thử nghiệm giao diện và luồng logic.
+
+---
+*Built for the Midnight Developer Community.*
