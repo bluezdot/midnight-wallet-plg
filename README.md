@@ -13,16 +13,17 @@ Bộ công cụ phát triển dành cho kỹ sư xây dựng ví và ứng dụn
 - [pnpm](https://pnpm.io/installation) v8.0.0 trở lên.
 - Node.js v18+.
 
-## 📦 Cài đặt
-Sử dụng pnpm để cài đặt dependencies nhanh và tiết kiệm dung lượng:
+## 📦 Cài đặt (Quan trọng)
+Để chạy dự án local, bạn **bắt buộc** phải chạy lệnh sau để cài đặt các công cụ như Vite và TypeScript:
 ```bash
 pnpm install
 ```
+Sau khi cài đặt thành công, thư mục `node_modules/.bin/vite` sẽ xuất hiện, cho phép bạn chạy lệnh `pnpm dev`.
 
 ## 💻 Các lệnh thực thi
 | Lệnh | Mô tả |
 | :--- | :--- |
-| `pnpm dev` | Khởi động môi trường phát triển UI |
+| `pnpm dev` | Khởi động môi trường phát triển UI (Vite) |
 | `pnpm test` | Chạy script kiểm thử ví (`test-script.ts`) |
 | `pnpm build` | Đóng gói ứng dụng cho production |
 
