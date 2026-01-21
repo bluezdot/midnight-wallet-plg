@@ -1,0 +1,1 @@
+export const TEST_ADDRESS = 'mn_addr_preview18e9tf5hfnpcl9a3a746davv37tq2yfsq2eatmapahcyv3cgkky3sv608tg';

@@ -26,6 +26,7 @@ export class MidnightService {
   }
 
   async getBalance(address: string, isShielded: boolean): Promise<number> {
+    // todo: update logic to get on-chain balance
     await new Promise(resolve => setTimeout(resolve, 400));
     return isShielded ? 5000.00 : 1250.75;
   }
@@ -43,6 +44,8 @@ export class MidnightService {
     isShielded: boolean,
     onProgress?: (stage: string) => void
   ): Promise<TransactionRecord> {
+    // todo: create logic to build transfer
+
     onProgress?.("Building transaction components...");
     await new Promise(r => setTimeout(r, 600));
 

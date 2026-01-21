@@ -1,18 +1,13 @@
 
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { 
   WalletState, 
-  TransactionRecord, 
-  LogEntry, 
-  NetworkType 
+  TransactionRecord
 } from './types';
 import { midnightService } from './services/midnightService';
-import { ConsoleLog } from './components/ConsoleLog';
-import { GeminiAssistant } from './components/GeminiAssistant';
 
 const App: React.FC = () => {
   const [wallet, setWallet] = useState<WalletState | null>(null);
-  const [logs, setLogs] = useState<LogEntry[]>([]);
   const [txHistory, setTxHistory] = useState<TransactionRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentStage, setCurrentStage] = useState<string | null>(null);
@@ -21,19 +16,16 @@ const App: React.FC = () => {
   const [amount, setAmount] = useState('');
   const [isShielded, setIsShielded] = useState(true);
 
-  const addLog = useCallback((message: string, level: LogEntry['level'] = 'info') => {
-    setLogs(prev => [...prev, { timestamp: Date.now(), message, level }]);
-  }, []);
-
   const connectWallet = async () => {
     setLoading(true);
-    addLog('Connecting to Midnight Devnet...');
     try {
       const state = await midnightService.connectWallet();
+
+      console.log('state', state);
+
       setWallet(state);
-      addLog(`Connected: ${state.address.substring(0, 15)}...`, 'success');
     } catch (err) {
-      addLog('Failed to connect to Midnight network', 'error');
+      // todo: console.error
     } finally {
       setLoading(false);
     }
@@ -52,11 +44,9 @@ const App: React.FC = () => {
         isShielded,
         (stage) => {
           setCurrentStage(stage);
-          addLog(`[ZK-Engine] ${stage}`, 'info');
         }
       );
       setTxHistory(prev => [tx, ...prev]);
-      addLog(`Transaction successful. Hash: ${tx.hash.substring(0, 10)}...`, 'success');
       
       setWallet(prev => prev ? {
         ...prev,
@@ -67,7 +57,7 @@ const App: React.FC = () => {
       setAmount('');
       setRecipient('');
     } catch (err) {
-      addLog('Transaction failed or rejected by network', 'error');
+      // todo: console.error
     } finally {
       setLoading(false);
       setCurrentStage(null);
@@ -218,12 +208,6 @@ const App: React.FC = () => {
               </div>
             )}
           </div>
-        </div>
-
-        {/* Right Column: Console & AI */}
-        <div className="lg:col-span-5 space-y-6">
-          <ConsoleLog logs={logs} />
-          <GeminiAssistant />
         </div>
       </main>
     </div>
