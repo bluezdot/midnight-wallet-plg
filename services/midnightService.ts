@@ -31,10 +31,10 @@ export class MidnightService {
   }
 
   /**
-   * Mô phỏng quy trình giao dịch Midnight: 
-   * 1. Xây dựng tx body
-   * 2. Tạo ZK Proof (nếu là shielded)
-   * 3. Ký và gửi
+   * Simulates the Midnight transaction process: 
+   * 1. Build tx body
+   * 2. Generate ZK Proof (if shielded)
+   * 3. Sign and submit
    */
   async transfer(
     from: string, 
@@ -48,7 +48,7 @@ export class MidnightService {
 
     if (isShielded) {
       onProgress?.("Generating ZK-Proof (Compact contract)...");
-      // Giả lập thời gian tính toán Proof
+      // Simulate proof calculation time
       await new Promise(r => setTimeout(r, 2500));
       onProgress?.("Proof generated. Adding nullifiers to state...");
       await new Promise(r => setTimeout(r, 800));

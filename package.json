@@ -2,16 +2,15 @@
 {
   "name": "midnight-wallet-devkit",
   "version": "1.0.0",
-  "description": "Midnight Network Wallet Development Kit with pnpm workflow",
+  "description": "Professional Midnight Network Wallet Developer Suite",
   "type": "module",
-  "engines": {
-    "pnpm": ">=8.0.0"
-  },
   "scripts": {
     "dev": "vite",
     "test": "pnpm dlx ts-node test-script.ts",
     "build": "vite build",
-    "preview": "vite preview"
+    "pull": "git pull origin main",
+    "sync": "git fetch origin && git pull origin main && pnpm install",
+    "discard": "git reset --hard HEAD && git clean -fd"
   },
   "dependencies": {
     "@google/genai": "^1.38.0",
