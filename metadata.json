@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Midnight Wallet DevKit",
+  "description": "A developer tool for the Midnight Network to test token balances, shielded transfers, and script execution simulation.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
