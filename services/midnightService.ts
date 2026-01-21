@@ -1,10 +1,6 @@
 
 import { WalletState, TransactionRecord, TransactionStatus, NetworkType } from '../types';
 
-/**
- * MidnightService handles interactions with the Midnight network.
- * Note: In a production environment, this would use the @midnight-ntwrk/sdk.
- */
 export class MidnightService {
   private static instance: MidnightService;
   
@@ -17,12 +13,11 @@ export class MidnightService {
     return MidnightService.instance;
   }
 
-  // Simulate connecting to the Midnight Devnet
   async connectWallet(): Promise<WalletState> {
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 800));
     return {
-      address: 'unshielded_midnight1q8y9u2...',
-      shieldedAddress: 'shielded_mn1zxp9...',
+      address: 'unshielded_midnight1q8y9u2h5jxwa8n0p...',
+      shieldedAddress: 'shielded_mn1zxp9v8y2lx087scda...',
       unshieldedBalance: 1250.75,
       shieldedBalance: 5000.00,
       isConnected: true,
@@ -30,26 +25,40 @@ export class MidnightService {
     };
   }
 
-  // Simulate fetching balance
   async getBalance(address: string, isShielded: boolean): Promise<number> {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    // Simulation logic
+    await new Promise(resolve => setTimeout(resolve, 400));
     return isShielded ? 5000.00 : 1250.75;
   }
 
-  // Simulate a transfer
+  /**
+   * Mô phỏng quy trình giao dịch Midnight: 
+   * 1. Xây dựng tx body
+   * 2. Tạo ZK Proof (nếu là shielded)
+   * 3. Ký và gửi
+   */
   async transfer(
     from: string, 
     to: string, 
     amount: number, 
-    isShielded: boolean
+    isShielded: boolean,
+    onProgress?: (stage: string) => void
   ): Promise<TransactionRecord> {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Simulate ZK-Proof generation for shielded transactions
+    onProgress?.("Building transaction components...");
+    await new Promise(r => setTimeout(r, 600));
+
     if (isShielded) {
-      console.log('Generating ZK-Proof for shielded transfer...');
+      onProgress?.("Generating ZK-Proof (Compact contract)...");
+      // Giả lập thời gian tính toán Proof
+      await new Promise(r => setTimeout(r, 2500));
+      onProgress?.("Proof generated. Adding nullifiers to state...");
+      await new Promise(r => setTimeout(r, 800));
+    } else {
+      onProgress?.("Signing public transaction...");
+      await new Promise(r => setTimeout(r, 1000));
     }
+
+    onProgress?.("Submitting to Midnight Devnet...");
+    await new Promise(r => setTimeout(r, 1200));
 
     return {
       id: Math.random().toString(36).substring(7),

@@ -1,13 +1,16 @@
 
 /**
- * HOW TO RUN:
- * npx ts-node test-script.ts
+ * HOW TO RUN WITH PNPM:
+ * pnpm dlx ts-node test-script.ts
+ * 
+ * OR add to package.json scripts and run:
+ * pnpm test
  */
 
 import { midnightService } from './services/midnightService';
 
 async function runTests() {
-  console.log('--- Midnight Wallet Script Test ---');
+  console.log('--- Midnight Wallet Script Test (pnpm environment) ---');
   
   try {
     // 1. Connection
